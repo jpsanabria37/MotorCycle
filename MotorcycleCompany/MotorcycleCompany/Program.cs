@@ -1,3 +1,4 @@
+using Contracts;
 using Microsoft.EntityFrameworkCore;
 using MotorcycleCompany.Extensions;
 using Repository;
@@ -24,11 +25,16 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
+var logger = app.Services.GetRequiredService<ILoggerManager>();
+app.ConfigureExceptionHandler(logger);
+
+
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    app.UseHsts();
 }
 
 app.UseHttpsRedirection();

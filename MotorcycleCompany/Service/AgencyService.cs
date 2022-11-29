@@ -46,19 +46,11 @@ namespace Service
 
         public IEnumerable<AgencyDto> GetAllAgenciesDTO(bool trackChanges)
         {
-            try
-            {
-                var agencies = _repository.Agency.GetAll(trackChanges);
+            var agencies = _repository.Agency.GetAll(trackChanges);
 
-                var agenciesDto = _mapper.Map<IEnumerable<AgencyDto>>(agencies);
+            var agenciesDto = _mapper.Map<IEnumerable<AgencyDto>>(agencies);
                 
-                return agenciesDto;
-            }
-            catch (Exception ex)
-            {
-                _loggerManager.LogError($"Mas dañino que el azucar: {ex.Message}");
-                throw;
-            }
+            return agenciesDto;
         }
     }
 }

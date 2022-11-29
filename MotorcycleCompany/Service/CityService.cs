@@ -28,16 +28,9 @@ namespace Service
 
         public IEnumerable<City> GetAllCities(bool trackChanges)
         {
-            try
-            {
 
-                return _repository.City.GetAll(trackChanges);
-            }
-            catch (Exception ex)
-            {
-                _loggerManager.LogError($"Mas dañino que el azucar: {ex.Message}");
-                throw;
-            }
+            return _repository.City.GetAll(trackChanges);
+
         }
     }
 }
